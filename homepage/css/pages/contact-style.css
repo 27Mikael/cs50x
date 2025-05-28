@@ -1,0 +1,33 @@
+@import '../components/button-49.css';
+
+.h1 {
+  margin-bottom: 30px;
+}
+
+.form {
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}
+
+.text-area {
+  top: 41px;
+  left: 10px;
+  width: 320px;
+  height: 90px;
+  position: relative;
+}
+
+/* Sizing overrides for buttons, etc*/
+.medium {
+  width: 75px;
+  height: 38px;
+  font-size: 10px;
+  line-height: 39px;
+}

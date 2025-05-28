@@ -1,0 +1,44 @@
+/* Right split css*/
+.split-left {
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 35%;
+  height: 100%;
+  position: fixed;
+  padding-top: 20px;
+  overflow-x: hidden;
+  background-color: red;
+}
+
+/* Left split css*/
+.split-right {
+  top: 0;
+  right: 0;
+  z-index: 1;
+  width: 65%;
+  height: 100%;
+  position: fixed;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background-color: white;
+}
+
+.about-me {
+  padding: 10px;
+  width: 95%;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 12px;
+  background-color: black;
+}
+
+@media (max-width: 768px) {
+  .split-left {
+    display: none;
+  }
+
+  .split-right {
+    width: 100%;
+  }
+}

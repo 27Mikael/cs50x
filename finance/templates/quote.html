@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block main %}
+<!-- 
+  TODO: allow the user to look the stocks current price
+  TODO: input stocks symbol (name = symbol)
+  TODO: submit input via POST to /quote
+  TODO: 
+-->
+<form action="/quote" method="post">
+  <input type="text" name="symbol" value="">
+  <button type="submit"> Submit </button>
+</form>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block main %}
+<!-- 
+  TODO: show user stocks currently owned 
+  TODO: show number of shares owned
+  TODO: show current stock price
+  TODO: show total of each holding (shares*price)
+  TODO: show grand total (stocks total + cash)
+-->
+<div class="section">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Owned Stock</th>
+        <th>Shares Owned</th>
+        <th>Current Stock Price</th>
+        <th>Total Holding</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in data %}
+        <tr>
+          <td> {{ item["Owned Stock"] }} </td>
+          <td> {{ item["Shares Owned"] }} </td>
+          <td> {{ item["Current Stock Price"] }} </td>
+          <td> {{ item["Total Holding"] }} </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<div class="section">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Balance</th>
+        <th>Grand Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        {% for item in data %}
+          <td>{{ item["Balance"] }}</td>
+          <td>{{ item["Grand Total Holdings"] }}</td>
+        {% endfor %}
+      </tr>
+    </tbody>
+  </table>
+</div>
+{% endblock %}

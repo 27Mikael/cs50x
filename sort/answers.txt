@@ -1,0 +1,12 @@
+sort1 uses: bubble sort
+
+How do you know?: slowest sort algorithm among the 3 which is also true for bubble sort
+
+sort2 uses: Merge sort
+
+How do you know?: merge sort is the fastest sorting algorithms among the 3,
+and so is sort2. leading me ot believe that this is merge sort.
+
+sort3 uses: selection sort
+
+How do you know?: by default.

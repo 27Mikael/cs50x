@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block main %}
+<div class="section">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Purchaser</th>
+        <th>Stock</th>
+        <th>Price</th>
+        <th>Shares</th>
+        <th>Transaction Date</th>
+        <th>Transaction Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in history %}
+        <tr>
+        <th> {{ item["Purchaser"] }}</th>
+        <th> {{ item["Symbol"] }} </th>
+        <th> {{ item["Stock Price"] }} </th>
+        <th> {{ item["Shares Owned"] }} </th>
+        <th> {{ item["Transaction Type"] }} </th>
+        <th> {{ item["Transaction Date"] }} </th>
+        </tr>
+      {% endfor %}
+   </tbody>
+  </table>
+</div>
+{% endblock %}

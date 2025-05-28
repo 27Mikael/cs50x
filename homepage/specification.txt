@@ -1,0 +1,23 @@
+This file details the layout of my homepage
+
+
+CSS selectors used. (at least 5)
+1. body
+2. paragraph
+3. 
+
+
+HTML tags used. (at least 10)
+1. h1
+2. body
+3. p
+4. a
+5. link
+6. script
+7. title
+8. html
+9. nav
+10. img
+
+How js was implemented:
+How bootstrap was implemented:
