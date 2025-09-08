@@ -39,20 +39,25 @@ def after_request(response):
 def index():
     user_id = session["user_id"]
     cash = db.execute("SELECT cash FROM users WHERE id = ?", user_id)[0]["cash"]
-    rows = db.execute("SELECT symbol, shares, stock_price, (shares*stock_price) AS total_cost FROM history WHERE purchaser_id = ? AND transaction_type = \"buy\"", user_id)
+    rows = db.execute(
+        'SELECT symbol, shares, stock_price, (shares*stock_price) AS total_cost FROM history WHERE purchaser_id = ? AND transaction_type = "buy"',
+        user_id,
+    )
     grand_total = sum(row["total_cost"] for row in rows)
 
     data = []
     for row in rows:
-        data.append({
-            "Owned Stock": row["symbol"],
-            "Shares Owned": row["shares"],
-            "Current Stock Price": row["stock_price"],
-            "Total Holding": row["total_cost"],
-            "Balance": cash,
-            "Grand Total Holdings": grand_total,
-            "Portfolio Value (Cash + Stocks)": cash + grand_total
-        })
+        data.append(
+            {
+                "Owned Stock": row["symbol"],
+                "Shares Owned": row["shares"],
+                "Current Stock Price": row["stock_price"],
+                "Total Holding": row["total_cost"],
+                "Balance": cash,
+                "Grand Total Holdings": grand_total,
+                "Portfolio Value (Cash + Stocks)": cash + grand_total,
+            }
+        )
     return render_template("index.html", data=data)
 
 
@@ -78,7 +83,6 @@ def buy():
         if total_cost > user_cash:
             return apology("Insufficient funds")
 
-
         db.execute("""
             CREATE TABLE IF NOT EXISTS history (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -93,27 +97,40 @@ def buy():
             );
         """)
 
-        db.execute("INSERT INTO history (purchaser_id, symbol, stock_price, shares, total_cost, transaction_type ) VALUES(?, ?, ?, ?, ?, ?)", purchaser_id,symbol, stock_price, shares, total_cost, transaction_type)
+        db.execute(
+            "INSERT INTO history (purchaser_id, symbol, stock_price, shares, total_cost, transaction_type ) VALUES(?, ?, ?, ?, ?, ?)",
+            purchaser_id,
+            symbol,
+            stock_price,
+            shares,
+            total_cost,
+            transaction_type,
+        )
 
         return redirect("/")
     return render_template("buy.html")
+
 
 # DONE: Show history of transactions
 @app.route("/history")
 @login_required
 def history():
-    rows = db.execute("SELECT symbol, purchaser_id, shares, stock_price, transaction_type, transaction_date FROM history")
+    rows = db.execute(
+        "SELECT symbol, purchaser_id, shares, stock_price, transaction_type, transaction_date FROM history"
+    )
     purchaser = db.execute("SELECT username FROM users")[0]["username"]
     history = []
     for row in rows:
-        history.append({
-            "Symbol": row["symbol"],
-            "Purchaser": purchaser,
-            "Stock Price": row["stock_price"],
-            "Shares Owned": row["shares"],
-            "Transaction Date": row["transaction_date"],
-            "Transaction Type": row["transaction_type"]
-        })
+        history.append(
+            {
+                "Symbol": row["symbol"],
+                "Purchaser": purchaser,
+                "Stock Price": row["stock_price"],
+                "Shares Owned": row["shares"],
+                "Transaction Date": row["transaction_date"],
+                "Transaction Type": row["transaction_type"],
+            }
+        )
     return render_template("history.html", history=history)
 
 
@@ -187,7 +204,7 @@ def quote():
 def register():
     if request.method == "POST":
         username = request.form.get("username")
-        if not username: 
+        if not username:
             return apology("TODO")
 
         try:
@@ -196,23 +213,19 @@ def register():
             return apology("TODO")
 
         password = request.form.get("password")
-        confirmation = password
-        if not confirmation:
-            return apology("TODO")
+        confirmation = request.form.get("confirmation")
+        if confirmation != password:
+            return apology("Passwords dont match!")
+        elif not confirmation or not password:
+            return apology("Password can't be blank.")
 
-        try: 
-            passowrd = str(confirmation)
-        except ValueError:
-            return apology("TODO")
-
-        hash = (
-                generate_password_hash(confirmation, method='scrypt', salt_length=16)
-        )
+        hash = generate_password_hash(confirmation, method="scrypt", salt_length=16)
 
         db.execute("INSERT INTO users (username, hash) VALUES(?, ?)", username, hash)
 
     else:
         return render_template("register.html")
+
 
 # DONE: Sell shares of stock
 @app.route("/sell", methods=["GET", "POST"])
@@ -237,6 +250,14 @@ def sell():
         total_cost = stock_price * float(shares)
 
         purchaser_id = user_id = session["user_id"]
-        db.execute("INSERT INTO history ( purchaser_id, symbol, stock_price, shares, total_cost, transaction_type ) VALUES(?, ?, ?, ?, ?, ?)", purchaser_id, symbol, stock_price, shares, total_cost, transaction_type)
+        db.execute(
+            "INSERT INTO history ( purchaser_id, symbol, stock_price, shares, total_cost, transaction_type ) VALUES(?, ?, ?, ?, ?, ?)",
+            purchaser_id,
+            symbol,
+            stock_price,
+            shares,
+            total_cost,
+            transaction_type,
+        )
 
     return render_template("sell.html")
