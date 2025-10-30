@@ -4,7 +4,9 @@ This file details the layout of my homepage
 CSS selectors used. (at least 5)
 1. body
 2. paragraph
-3. 
+3. title
+4. navigation
+5. divider
 
 
 HTML tags used. (at least 10)

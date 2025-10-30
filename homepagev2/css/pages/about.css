@@ -1,0 +1,82 @@
+@import '../struct/colors.css';
+
+.about-page {
+  background-color: black;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+.profile {
+  position: fixed;
+  top: 0;
+  left: 42.5%;
+  width: 15%; 
+  height: clamp(150px, 37vh, 300px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  overflow: hidden;
+  border-radius: 0px 0px 250px 250px;
+  background-color: var(--burgundy);
+  transition: all 0.3s ease-out;
+}
+
+.profile img {
+  width: 220px;
+  height: 300px;
+  border-radius: 0%;
+  object-fit: cover;
+  transition: all 0.3s ease-out;
+}
+
+#list-example {
+  font-family:"Republica";
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  right: 0px;
+  z-index: 999;
+  width: 126px;
+}
+
+#list-example .list-group-item {
+  background-color: rgba(90, 58, 58, 0);
+  border-color: rgba(255, 255, 255, 0);
+  color: white;
+}
+
+#list-example .list-group-item:hover {
+  background-color: rgba(139, 107, 107, 0.9);
+}
+
+#list-example .list-group-item.active {
+  font-family:"Republica";
+  color: var(--mustard);
+}
+
+.section {
+  margin-top: 40vh; 
+  margin-left: 5;
+  min-height: 70vh;
+}
+
+.section h1 {
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  border-radius: 8px;
+  color: var(--mustard);
+  font-family: "Republica";
+}
+
+.section p {
+  width: 90%;
+  justify-content: center;
+  color: white;
+  line-height: 1.6;
+}

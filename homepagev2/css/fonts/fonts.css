@@ -1,0 +1,13 @@
+@font-face {
+  font-family: "Republica";
+  src: url("RepublicaMinor.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: " Compt";
+  src: url("./a-font-for-the-computer-people.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}

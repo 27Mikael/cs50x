@@ -1,0 +1,45 @@
+This file details the layout of my homepage
+
+---
+
+✅ **4+ HTML pages**
+
+* Must include `index.html`.
+* Each page links to all others via hyperlinks.
+
+✅ **10+ different HTML tags**
+
+* (Excluding `<html>`, `<head>`, `<body>`, `<title>`).
+1. <a></a>
+2. <div></div>
+3. <nav></nav>
+
+✅ **Bootstrap**
+
+* Include `<link>` & `<script>` tags in `<head>`.
+* Use at least **one Bootstrap component** (navbar, card, alert, etc.).
+1. navbar
+
+✅ **Custom `styles.css`**
+
+* **5+ selectors:** tag, class, ID, etc.
+1. class
+* **5+ CSS properties:** e.g. `font-size`, `margin`, `color`, `padding`, `border`.
+1. right
+2. width
+3. height
+4. position
+5. margin-left
+6. background-color
+
+
+✅ **JavaScript interactivity**
+
+* E.g. alerts, interval effects, interactive buttons, dropdowns, or forms.
+1. clickable custom divs 
+
+✅ **Responsive design**
+
+* Looks good on **mobile**, **laptop**, and **desktop**.
+
+---

@@ -1,0 +1,10 @@
+/* STRUCTURES */
+@import '../css/struct/layout.css';
+@import '../css/fonts/text.css';
+
+/* PAGES */
+@import '../css/pages/blog.css';
+@import '../css/pages/about.css';
+@import '../css/pages/index.css';
+@import '../css/pages/creative.css';
+@import '../css/pages/experimental.css';

@@ -1,7 +1,7 @@
 import os
 
 from cs50 import SQL
-from flask import Flask, flash, redirect, render_template, request, session
+from flask import Flask, flash, redirect, render_template, request, session, url_for
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 
@@ -43,10 +43,14 @@ def index():
         'SELECT symbol, shares, stock_price, (shares*stock_price) AS total_cost FROM history WHERE purchaser_id = ? AND transaction_type = "buy"',
         user_id,
     )
+    print("DEBUG rows:", rows)
     grand_total = sum(row["total_cost"] for row in rows)
+    print("DEBUG grand_total:", grand_total)
+    print("DEBUG cash:", cash)
 
     data = []
     for row in rows:
+        print("DEBUG rows:", rows)
         data.append(
             {
                 "Owned Stock": row["symbol"],
@@ -58,7 +62,10 @@ def index():
                 "Portfolio Value (Cash + Stocks)": cash + grand_total,
             }
         )
-    return render_template("index.html", data=data)
+    return render_template(
+        "index.html",
+        data=data,
+    )
 
 
 # DONE: Buy shares of stock
@@ -72,7 +79,16 @@ def buy():
         if not shares or not symbol:
             return apology("Symbol or shares can not be blank")
 
+        try:
+            shares = int(shares)
+            if shares < 1:
+                return apology("Shares should be a postive int", 400)
+        except ValueError:
+            return apology("Shares must be a postive int", 400)
         stock = lookup(symbol)
+
+        if stock is None:
+            return apology("Invalid stock symbol")
         stock_price = stock["price"]
         total_cost = stock_price * float(shares)
 
@@ -156,10 +172,13 @@ def login():
             "SELECT * FROM users WHERE username = ?", request.form.get("username")
         )
 
+        stored_password = rows[0]["hash"]
+        user_password = request.form.get("password")
+        if user_password is None:
+            return apology("User password can not be empty")
+
         # Ensure username exists and password is correct
-        if len(rows) != 1 or not check_password_hash(
-            rows[0]["hash"], request.form.get("password")
-        ):
+        if len(rows) != 1 or not check_password_hash(stored_password, user_password):
             return apology("invalid username and/or password", 403)
 
         # Remember which user has logged in
@@ -189,14 +208,19 @@ def logout():
 @login_required
 def quote():
     # retrive symbol from quote
-    symbol = request.form.get("symbol")
-    if request.method == "GET":
-        return render_template("quote.html")
+    if request.method == "POST":
+        symbol = request.form.get("symbol")
 
-    # pass on symbol to quoted
-    else:
+        if not symbol:
+            return apology("Lookup cant be empty")
+
+        # pass on symbol to quoted
         stock = lookup(symbol)
+        if stock is None:
+            return apology("Invalid stock symbol", 400)
+
         return render_template("quoted.html", stock=stock)
+    return render_template("quote.html")
 
 
 # DONE: Register user
@@ -205,12 +229,12 @@ def register():
     if request.method == "POST":
         username = request.form.get("username")
         if not username:
-            return apology("TODO")
+            return apology("Username can not be blank")
 
         try:
             username = str(username)
         except ValueError:
-            return apology("TODO")
+            return apology("Username already exists")
 
         password = request.form.get("password")
         confirmation = request.form.get("confirmation")
@@ -219,9 +243,16 @@ def register():
         elif not confirmation or not password:
             return apology("Password can't be blank.")
 
-        hash = generate_password_hash(confirmation, method="scrypt", salt_length=16)
+        username_check = db.execute(
+            "SELECT * FROM users where username = ? LIMIT 1", username
+        )
+        if username_check:
+            return apology("Username already taken.")
 
+        hash = generate_password_hash(confirmation, method="scrypt", salt_length=16)
         db.execute("INSERT INTO users (username, hash) VALUES(?, ?)", username, hash)
+
+        return redirect(url_for("index"))
 
     else:
         return render_template("register.html")
@@ -246,6 +277,8 @@ def sell():
         redirect("/")
 
         stock = lookup(symbol)
+        if stock is None:
+            return apology("Invalid stock symbol")
         stock_price = stock["price"]
         total_cost = stock_price * float(shares)
 
