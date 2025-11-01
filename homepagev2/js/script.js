@@ -1,8 +1,18 @@
+// Save scroll position before reload
+window.addEventListener('beforeunload', () => {
+  localStorage.setItem('scrollPos', window.scrollY);
+});
+
+// Restore scroll position after reload
+window.addEventListener('load', () => {
+  const scrollPos = localStorage.getItem('scrollPos');
+  if (scrollPos) window.scrollTo(0, parseInt(scrollPos));
+});
 
 /*
  * index.html script
 */
-const elem = document.querySelectorAll("#about, #creative, #experimental, #blog");
+const elem = document.querySelectorAll("#about, #art, #projects, #blog");
 
 elem.forEach(el => {
   el.addEventListener("click", () => {
@@ -76,7 +86,7 @@ window.addEventListener('scroll', () => {
   const progress = Math.min(scrollY / maxScroll, 1);
 
   const startHeight = 30;
-  const endHeight = 10;
+  const endHeight = 8;
   const height = startHeight + (endHeight - startHeight) * progress;
 
   // Calculate width (50% to 100%)
@@ -93,7 +103,7 @@ window.addEventListener('scroll', () => {
     profile.style.height = `${height}vh`;
     profile.style.width = `${width}%`;
     profile.style.left = `${(100 - width) / 2}%`;
-    profile.style.top = `10px`;
+    profile.style.top = `2%`;
 
     // Fade out and scale down image
     img.style.opacity = 1 - progress;
@@ -103,7 +113,7 @@ window.addEventListener('scroll', () => {
     // Reset to initial state
     profile.style.borderRadius = '';
     profile.style.height = '';
-    profile.style.top = ``;
+    profile.style.top = '';
     profile.style.width = '';
     profile.style.left = '';
     img.style.opacity = '1';

@@ -2,39 +2,39 @@
 @import '../fonts/fonts.css';
 
 
-.experimental-page {
+.projects-page {
   width: 100%;
   height: 100%;
   overflow: hidden;
   background-color: black;
 }
 
-.experimental-page .carousel{
+.projects-page .carousel{
   width: 100%;
   height: 40%;
   margin-top: 0%;
 }
 
-.experimental-page .button {
+.projects-page .button {
   width: 100px;
   height: 100px;
   background-color: white;
 }
 
-.experimental-page .carousel-view { 
+.projects-page .carousel-view { 
   width: 100%;
   height: 100%;
   background-color: red;
 }
 
-.experimental-page .carousel-view .item-list{
+.projects-page .carousel-view .item-list{
   width: 100%;
   height: 100%;
   overflow: visible;
   background-color: blue;
 }
 
-.experimental-page .item{
+.projects-page .item{
   height: 80%;
   width: clamp(200px, 60%, 300px);
 }

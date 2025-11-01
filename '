@@ -33,22 +33,7 @@
   transition: all 0.3s ease-out;
 }
 
-#words {
-  width: 30vw;
-  height: 20vh;
-  margin-left: 6%;
-  background: var(--sage);
-  transform: translateY(70%);
-}
 
-#full {
-  font-size: 20px;
-  width: 50vw;
-  height: 50vh;
-  margin-left: 39%;
-  transform: translateY(-15%);
-  background: var(--mustard);
-}
 
 #nav-list {
   font-family:"Republica";
@@ -130,7 +115,6 @@
 .tl-itm:nth-child(4) { top: 80vh; left: 55%; background-color: var(--sage); }
 
 .project {
-  position: relative;
   width: 15vw;
   height: 35vh;
   margin-left: 10%;
@@ -142,44 +126,31 @@
   top: 5%;
   opacity: 0;
   margin-left: 5%;
-  position: absolute;
-  text-align: center;
 }
 
 .project h4 {
   top: 5%;
-  margin-left: 17%;
-  position: absolute;
-  text-align: center;
+  margin-left: 5%;
 }
 
 .project img {
-  top: 10px;
+  top: 0;
   width: 100%;
-  height: 85%;
-  position: absolute;
+  height: 71%;
   border-radius:15px;
-  transform: translateY(15%);
 }
 
 .project:hover img{
-  z-index: 1;
-  height: 101%;
-  transform: translateY(-5%);
   filter: blur(4px) brightness(0.2);
 }
 
 .project:hover p { 
+  transform: translateY( 150%);
   opacity: 1;
-  z-index: 2;
-}
-
-.project:hover h4 { 
-  opacity: 0;
 }
 
 .footer {
-  height: 70vh;
+  height: 60vh;
   background-color: var(--teal);
 
 }

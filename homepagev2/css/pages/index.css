@@ -29,7 +29,7 @@
   background-color: var(--mustard);
 }
 
-.creative {
+.art {
   left: 17%; 
   color: black;
   text-align: center;
@@ -38,10 +38,10 @@
   transform: translate(-40%, 20%);
 }
 
-.experimental {
+.projects {
   left: 42%;
   color: black;
-  text-align: left;
+  text-align: center;
   font-family: "Republica";
   background-color: var(--sage);
   transform: translate(-50%, -30%);
