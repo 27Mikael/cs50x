@@ -1,16 +1,16 @@
 This file details the layout of my homepage
 
 HTML tags used;
-1. <a>
-2. <div>
-3. <nav>
-4. <img>
-5. <h1>
-6. <h4>
-7. <p>
-8. <ul>
-9. <li>
-10. <h3>
+1. a
+2. div
+3. nav
+4. img
+5. h1
+6. h4
+7. p
+8. ul
+9. li
+10. h3
 
 css  properties used
 1. right
