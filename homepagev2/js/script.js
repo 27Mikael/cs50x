@@ -76,55 +76,64 @@ carouselItems.forEach(item => {
  * for about.html
  *
  */
-window.addEventListener('scroll', () => {
-  const profile = document.querySelector('.profile');
-  const img = profile.querySelector('img');
-  const scrollY = window.scrollY;
-  const maxScroll = 300;
-
-  // Calculate progress (0 to 1)
-  const progress = Math.min(scrollY / maxScroll, 1);
-
-  const startHeight = 30;
-  const endHeight = 8;
-  const height = startHeight + (endHeight - startHeight) * progress;
-
-  // Calculate width (50% to 100%)
-  const startWidth = 50;
-  const endWidth = 99;
-  const width = startWidth + (progress * (endWidth - startWidth));
-
-  // Calculate border radius (250px to 20px for bottom)
-  const radius = 240 - (progress * 230);
-  const top = progress * 80;
-
-  if (progress > 0) {
-    profile.style.borderRadius = `${radius}px`;
-    profile.style.height = `${height}vh`;
-    profile.style.width = `${width}%`;
-    profile.style.left = `${(100 - width) / 2}%`;
-    profile.style.top = `2%`;
-
-    // Fade out and scale down image
-    img.style.opacity = 1 - progress;
-    const imgScale = 1 - progress * 0.45;
-    img.style.transform = `scale(${imgScale})`;
-  } else {
-    // Reset to initial state
-    profile.style.borderRadius = '';
-    profile.style.height = '';
-    profile.style.top = '';
-    profile.style.width = '';
-    profile.style.left = '';
-    img.style.opacity = '1';
-    img.style.transform = 'scale(1)';
+const holder = document.querySelector('.holder');
+const profile = document.querySelector('.profile');
+holder.addEventListener('mouseenter', () => {
+  if (profile.querySelector('.scroll-icons')) {
+    return;
   }
-
-  // Hide scroll hint after scrolling
-  const scrollHint = document.querySelector('.scroll-hint');
-  if (scrollY > 50) {
-    scrollHint.style.opacity = '0';
-  } else {
-    scrollHint.style.opacity = '1';
+  if (!profile.querySelector('.hover-icons')) {
+    const iconHolder = document.createElement('div');
+    iconHolder.className = 'hover-icons';
+    Object.assign(iconHolder.style, {
+      position: 'absolute',
+      bottom: '10px',
+      left: '50%',
+      transform: 'translateX(-50%)',
+      display: 'flex',
+      gap: '15px',
+      opacity: '0',
+      transition: 'opacity 0.4s ease',
+      zIndex: '9999',
+      pointerEvents: 'auto',
+    });
+    const icons = [
+      { src: '../image/icon/home-svgrepo-com.svg', url: '../index.html' },
+      { src: '../image/icon/palette-svgrepo-com (2).svg', url: '../html/art.html' },
+      { src: '../image/icon/blog-comment-edit-svgrepo-com.svg', url: '../html/blog.html' },
+      { src: '../image/icon/artificial-intelligence-svgrepo-com.svg', url: '../html/projects.html' },
+    ];
+    icons.forEach((item, i) => {
+      const link = document.createElement('a');
+      link.href = item.url;
+      link.target = '_self';
+      link.rel = 'noopener noreferrer';
+      link.style.zIndex = '10000';
+      link.style.pointerEvents = 'auto';
+      const icon = document.createElement('img');
+      icon.src = item.src;
+      Object.assign(icon.style, {
+        width: '30px',
+        height: '30px',
+        opacity: '0',
+        cursor: 'pointer',
+        transition: 'opacity 0.3s ease, transform 0.3s ease',
+        filter:
+          'invert(13%) sepia(14%) saturate(6982%) hue-rotate(316deg) brightness(96%) contrast(95%)',
+      });
+      // Fade-in animation
+      link.appendChild(icon);
+      iconHolder.appendChild(link);
+      setTimeout(() => (icon.style.opacity = '1'), 100 * (i + 1));
+    });
+    profile.appendChild(iconHolder);
+    setTimeout(() => (iconHolder.style.opacity = '1'), 50);
   }
-})
+});
+holder.addEventListener('mouseleave', () => {
+  const iconHolder = profile.querySelector('.hover-icons');
+  if (iconHolder) {
+    iconHolder.style.opacity = '0';
+    setTimeout(() => iconHolder.remove(), 300);
+  }
+});

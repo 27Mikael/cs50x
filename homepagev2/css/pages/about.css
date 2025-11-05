@@ -8,87 +8,120 @@
   display: none;
 }
 
-.profile {
-  position: fixed;
-  top: 0;
-  left: 42.5%;
-  width: 15%; 
-  height: clamp(150px, 37vh, 300px);
+.holder {
+  width: 100%;
+  height: 40vh;
   display: flex;
-  flex-direction: column;
+  overflow: visible;
   align-items: center;
+  padding-bottom: 20vh;
+  background: transparent; 
   justify-content: center;
+  transition: all 0.4s ease-out;
+}
+
+.holder:hover {
+  height: 8vh;
+  transform: translateY(10%);
+  transition: all 0.8s ease-out;
+}
+
+.profile {
+  top: 0;
+  left: 50%;
+  width: 20%; 
+  display: flex;
   z-index: 1000;
   overflow: hidden;
-  border-radius: 0px 0px 250px 250px;
-  background-color: var(--burgundy);
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  transform: translateY(22%);
   transition: all 0.3s ease-out;
+  background-color: var(--burgundy);
+  height: clamp(150px, 40vh, 300px);
+  border-radius: 0px 0px 200px 200px;
 }
 
 .profile img {
-  width: 220px;
+  opacity: 1;
+  width: 280px;
   height: 300px;
-  border-radius: 0%;
   object-fit: cover;
   transition: all 0.3s ease-out;
 }
 
-#words {
-  width: 30vw;
-  height: 20vh;
-  margin-left: 6%;
-  background: var(--sage);
+.holder:hover .profile {
+  height: 8vh;
+  width: 45%;
+  left: 27.5%;
+  border-radius: 15px;
+  background-color: transparent;
   transform: translateY(70%);
+  border: 3px solid var(--burgundy);
+}
+
+.holder:hover .profile img {
+  opacity: 0;
+}
+
+#words {
+  width: 30%;
+  height: 50%;
+  margin-left: 6%;
+  color: var(--sage);
+  font-family: "Fascinate";
+  transform: translateY(120%);
 }
 
 #full {
-  font-size: 20px;
-  width: 50vw;
-  height: 50vh;
+  width: 50%;
+  height: 80%;
+  font-size: 28px;
   margin-left: 39%;
+  font-family: "Caveat";
+  color: var(--mustard);
   transform: translateY(-15%);
-  background: var(--mustard);
 }
 
 #nav-list {
-  font-family:"Republica";
-  position: fixed;
   top: 50%;
-  transform: translateY(-50%);
-  font-size: 12px;
   right: 0px;
   z-index: 999;
   width: 126px;
+  font-size: 12px;
+  position: fixed;
+  font-family:"Republica";
+  transform: translateY(-50%);
 }
 
 #nav-list .list-group-item {
-  background-color: rgba(90, 58, 58, 0);
-  border-color: rgba(255, 255, 255, 0);
   color: white;
+  border-color: rgba(255, 255, 255, 0);
+  background-color: rgba(90, 58, 58, 0);
 }
 
 #nav-list .list-group-item:hover {
-  background-color: rgba(139, 107, 107, 0.9);
+  color: var(--sage);
 }
 
 #nav-list .list-group-item.active {
-  font-family:"Republica";
   color: var(--mustard);
+  font-family:"Republica";
 }
 
 .section {
   margin-top: 10vh; 
-  margin-left: 5;
   min-height: 40vh;
 }
 
 .section h1 {
   width: 100%;
-  padding: 10px;
+  font-size: 50px;
   text-align: center;
   border-radius: 8px;
   color: var(--mustard);
-  font-family: "Republica";
+  font-family:"Republica";
 }
 
 .section p {
@@ -117,17 +150,34 @@
 
 .tl-itm {
   position: absolute;
+  border: 3px solid;
   width: 35vw;
   height: 30vh;
   border-radius: 12px;
+  background-color: transparent;
   color: white;
+}
+.tl-itm h3 {
+  font-family: "Caveat";
+  margin-top: 3%;
+  margin-left: 2%;
+}
+
+.tl-itm h4 {
+  margin-left: 2%;
+  font-family: "Caveat";
+}
+
+.tl-itm ul li {
+  font-size: 20px;
+  font-family: "Caveat";
 }
 
 /* Vertical positions */
-.tl-itm:nth-child(1) { top: 5vh; left: 10%; background-color: var(--teal); }
-.tl-itm:nth-child(2) { top: 30vh; left: 55%; background-color: var(--sage); }
-.tl-itm:nth-child(3) { top: 55vh; left: 10%; background-color: var(--teal); }
-.tl-itm:nth-child(4) { top: 80vh; left: 55%; background-color: var(--sage); }
+.tl-itm:nth-child(1) { color:var(--teal);top: 5vh; left: 10%; border-color: var(--teal); }
+.tl-itm:nth-child(2) { color:var(--sage);top: 30vh; left: 55%; border-color: var(--sage); }
+.tl-itm:nth-child(3) { color:var(--teal);top: 55vh; left: 10%; border-color: var(--teal); }
+.tl-itm:nth-child(4) { color:var(--sage);top: 80vh; left: 55%; border-color: var(--sage); }
 
 .project {
   position: relative;
@@ -180,6 +230,53 @@
 
 .footer {
   height: 70vh;
+  color: white;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
   background-color: var(--teal);
-
+  background: linear-gradient(to bottom, black, var(--teal));
 }
+
+.footer p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.socials {
+  display: flex;
+}
+
+.socials h1 {
+  color: white;
+}
+
+.socials a img {
+  filter: brightness(0) invert(1);
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.socials a:hover img {
+  transform: scale(1.2);
+  filter: brightness(1.2);
+}
+
+#github {
+  width: 40px;
+  height: 40px;
+}
+
+#linkedin {
+  width: 60px;
+  height: 60px;
+  transform: translateY(-18%);
+}
+
+#gmail {
+  width: 60px;
+  height: 60px;
+  transform: translateY(-18%);
+}
+

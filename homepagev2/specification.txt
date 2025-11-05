@@ -1,30 +1,18 @@
 This file details the layout of my homepage
 
----
+HTML tags used;
+1. <a>
+2. <div>
+3. <nav>
+4. <img>
+5. <h1>
+6. <h4>
+7. <p>
+8. <ul>
+9. <li>
+10. <h3>
 
-✅ **4+ HTML pages**
-
-* Must include `index.html`.
-* Each page links to all others via hyperlinks.
-
-✅ **10+ different HTML tags**
-
-* (Excluding `<html>`, `<head>`, `<body>`, `<title>`).
-1. <a></a>
-2. <div></div>
-3. <nav></nav>
-
-✅ **Bootstrap**
-
-* Include `<link>` & `<script>` tags in `<head>`.
-* Use at least **one Bootstrap component** (navbar, card, alert, etc.).
-1. navbar
-
-✅ **Custom `styles.css`**
-
-* **5+ selectors:** tag, class, ID, etc.
-1. class
-* **5+ CSS properties:** e.g. `font-size`, `margin`, `color`, `padding`, `border`.
+css  properties used
 1. right
 2. width
 3. height
@@ -32,14 +20,10 @@ This file details the layout of my homepage
 5. margin-left
 6. background-color
 
+How I used Bootstrap
+I used scrollspy, to keep track of wher the user is on the page, implemented it
+in about me and art gallery pages.
 
-✅ **JavaScript interactivity**
-
-* E.g. alerts, interval effects, interactive buttons, dropdowns, or forms.
-1. clickable custom divs 
-
-✅ **Responsive design**
-
-* Looks good on **mobile**, **laptop**, and **desktop**.
-
----
+How I used javascript
+I add click interactivity to the index.html which redirects the user to the
+relevant pages.
